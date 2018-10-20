@@ -52,11 +52,11 @@ function changeBackground(datePicked){
 function addCard(){
     console.log("making card now")
     var newCard = $("<div class='card'></div>");
-    newCard.append("<div class='card-title'>"+picTitle+"</div>")
-    newCard.append("<div class='card-content'>"+picInfo+"</div>")
+    var newCardContent= $("<div class='card-content'></div>");
+    newCardContent.append("<span class='card-title'>"+picTitle+"</span>")
+    newCardContent.append("<p>"+picInfo+"</p>")
 
+    newCard.append(newCardContent);
     $(".contentSpot").append(newCard)
-
-    
 }
 
