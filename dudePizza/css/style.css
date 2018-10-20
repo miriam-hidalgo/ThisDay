@@ -1,0 +1,17 @@
+.row{
+    margin-top:40px;
+}
+button{
+    margin-top: 10px;
+}
+
+.datepicker-date-display{
+    /* background-color:red; */
+    background-image: url("https://www.jpl.nasa.gov/spaceimages/images/wallpaper/PIA17563-1920x1200.jpg");
+    background-size: cover;
+  }
+
+  .datepicker-cancel, .datepicker-clear, .datepicker-done,.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected,.datepicker-table td.is-today{
+      color:#423093;
+     
+  }

@@ -5,30 +5,47 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/style.css"/>
+      <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body class="red accent-2">
+    <body class="white">
         
-        <div class="container red accent-2">         
-          <h1><span><blockquote class="hoverable">Put in your location! (Submission form to follow soon!)</blockquote></span></h1>
-          <!-- need submission form to begin connection to ajax call from the button -->
-            
-            <button class="btn btn-large hoverable circle right deep-orange accent-2 black-text lighten-2 waves-effect waves-light"><i class="material-icons left">sentiment_very_satisfied</i>Dude, where's my pizza?</button>
-            
-            <!-- blue circle is hoverable, will need to make the relationship with the circle and the iframe a smoother transition -->
-            <div class="light-blue lighten-2 circle hoverable container">
-            
-              <div class="valign-wrapper center-align">
-                <!-- image currently not centered, will need to go into the actual css file and make a new class to do this. I think i will have to create a height characteristic to make this work -->
-                <iframe width="830" height="530" src="https://www.manoosh.com.au/wp-content/uploads/tumblr_m7g2flq7cF1r93y4eo1_500-2-1.gif" frameborder="0" allowfullscreen></iframe>
+        <div class="container">        
+          <div class="row">
+              <div class="col s2"></div>
+              <div class="col s8"></div>
+              <div class="col s2"></div>
+          </div> 
+          <div class="row">
+              <div class="col s2"></div>
+              <div class="col s8 contentSpot">
+                  <input type="text" class="datepicker">
+                  <button id="submit" class="btn btn-large hoverable circle right white accent-2 black-text lighten-2 waves-effect waves-dark"><i class="material-icons left">sentiment_very_satisfied</i>WHAT HAPPENED THIS DAY</button>
               </div>
-            </div>
+              <div class="col s2"></div>
+          </div> 
+           
+                    
+            <!-- blue circle is hoverable, will need to make the relationship with the circle and the iframe a smoother transition -->
+            <!-- <div class="light-blue lighten-2 circle hoverable container"> -->
+            
+              <!-- <div class="valign-wrapper center-align"> -->
+                <!-- image currently not centered, will need to go into the actual css file and make a new class to do this. I think i will have to create a height characteristic to make this work -->
+                <!-- <iframe width="830" height="530" src="https://www.manoosh.com.au/wp-content/uploads/tumblr_m7g2flq7cF1r93y4eo1_500-2-1.gif" frameborder="0" allowfullscreen></iframe>
+              </div> -->
+            <!-- </div> -->
             <!-- <blockquote class="hoverable orange darken-2">Dude, where is that pizza?</blockquote> -->
         </div>
-            <!--JavaScript at end of body for optimized loading-->
+        
+        <!--JavaScript at end of body for optimized loading-->
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/pizza.js"></script>
     </body>
   </html>
