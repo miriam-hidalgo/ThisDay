@@ -33,7 +33,19 @@ $("#submit").on("click",function(){
             
         }
     });
-        
+    console.log("date picked = "+date);
+    console.log("year = "+date.split("-")[0])
+    console.log("month = "+date.split("-")[1])
+    var mm = (date.split("-")[1])
+    console.log("day = "+date.split("-")[2])
+    var dd = (date.split("-")[2])
+     
+     $.ajax({
+         url: "http://numbersapi.com/" + mm + "/" + dd + "/date",
+         success: function(result){  
+            
+         }
+     });
 })
 
 function changeBackground(datePicked){
@@ -57,6 +69,6 @@ function addCard(){
     newCardContent.append("<p>"+picInfo+"</p>")
 
     newCard.append(newCardContent);
-    $(".contentSpot").append(newCard)
+    $(".apodCard").append(newCard)
 }
 
