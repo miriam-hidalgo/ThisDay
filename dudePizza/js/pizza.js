@@ -8,6 +8,8 @@ var dd;
 $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
 
 $("#submit").on("click",function(){
+    $(".apodCard").empty()
+    $(".numberBlock").empty()
 
     //get rid of inputs
     $(".datepicker").toggle();
@@ -42,7 +44,6 @@ $("#submit").on("click",function(){
     mm = (date.split("-")[1])
    console.log("day = "+date.split("-")[2])
     dd = (date.split("-")[2])
-
     
     $.ajax({
         url: "http://numbersapi.com/" + mm + "/" + dd + "/date",
@@ -52,7 +53,23 @@ $("#submit").on("click",function(){
            addNumbersCard();
         }
     });
+
+    var nytUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json",
+        nytUrl = nytUrl+"?" + $.param({
+        'api-key': "49af0056ae9e46d5a207000ad5232d9d",
+        'begin_date': "20181002",
+        // 'sort': "oldest"
+        // 'fl': "print_page"
+        });
+    $.ajax({
+    
+        url: nytUrl,
+        success: function(result){  
+           console.log(result)
+        }
+    });
 })
+
 function changeBackground(datePicked){
     $.ajax({
     url: url+"&date="+datePicked,
@@ -61,7 +78,7 @@ function changeBackground(datePicked){
         //change background color
         console.log(result.url)
         $("body").css("background-image","url("+result.url+")");
-        $("body").css("background-size","cover")
+        $("body").css("background-size","cover");
         }
     });
 }
@@ -88,6 +105,7 @@ function addNumbersCard(){
     newNumberCard.append(newNumberCardContent);
     $(".numberBlock").append(newNumberCard)
 }
+
 $(".numberBlock").on("click", "a", function(){
     console.log("y=h");
     newNumber();
@@ -103,4 +121,19 @@ function newNumber(){
         }
     });
 }
+
+  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+    //var collapsibleElem = document.querySelector('.collapsible');
+    //var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
+
+  // Or with jQuery
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+
+  $("#newDateButton").on("click", function(){
+    console.log();
+    $(".datepicker").toggle();
+    $("#submit").toggle()  
+})
 
