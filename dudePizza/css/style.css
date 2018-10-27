@@ -11,17 +11,44 @@ button{
     background-size: cover;
   }
 
-  .datepicker-cancel, .datepicker-clear, .datepicker-done,.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected,.datepicker-table td.is-today{
-      color:#423093;
-     
-  }
+.datepicker-cancel, .datepicker-clear, .datepicker-done,.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected,.datepicker-table td.is-today{
+    color:#423093;
+    
+}
 
-  .datepicker-table td.is-selected{
-      background-color:#423093;
-  }
+.datepicker-table td.is-selected{
+    background-color:#423093;
+}
 
-  a{
-      margin-top:10px;
-      width:100%;
-      color:#423093;
-  }
+a{
+    margin-top:10px;
+    width:100%;
+    color:#423093;
+    font-weight: bold;
+}
+
+.btn{
+    background-color:#423093;
+}
+body {
+    background: black;
+}
+
+figure {
+	margin: 5em auto;
+	width: 350px;
+	height: 150px;
+}
+
+.section {
+    padding-top:0em;
+    padding-bottom: 3em;
+}
+.row{
+    margin-bottom:0;
+}
+
+p{
+    text-align: justify;
+    text-justify: auto;
+}
