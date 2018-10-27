@@ -52,6 +52,15 @@ $("#submit").on("click",function(){
            addNumbersCard();
         }
     });
+    $.ajax({
+        url: "https://api.darksky.net/forecast/9b70b905a7064b660f99a10adfa4f74c/40.7128,-74.0060,2018-"+ mm +"-" + dd + "T12:00:00",
+        success: function(result){  
+           console.log(result.currently)
+           weatherInfo = result;
+           addWeatherCard();
+           $("#weatherBlock").html(result.currently);
+        }
+    });
 })
 function changeBackground(datePicked){
     $.ajax({
@@ -96,11 +105,52 @@ function newNumber(){
     $.ajax({
         url: "http://numbersapi.com/" + mm + "/" + dd + "/date",
         success: function(result){  
-           console.log(result)
-           numbersInfo = result;
-           $("#trivia").html(result);
-       
+            console.log(result)
+            numbersInfo = result;
+            $("#trivia").html(result);
         }
     });
 }
 
+
+// skycons to append to div. need to connect .currently.icon
+function addWeatherCard(){
+    console.log("making weather card now")
+    var newWeatherCard = $("<div class='card'></div>");
+    var newWeatherCardContent= $("<div class='card-content'></div>");
+    // newCardContent.append("<span class='card-title'>"+picTitle+"</span>")
+    newWeatherCardContent.append("<p id='weather'>"+ weatherInfo +"</p>")
+    newWeatherCardContent.append("<a class='waves-effect waves-light btn'>NEW TRIVIA</a>")
+
+    newWeatherCard.append(newWeatherCardContent);
+    $(".numberBlock").append(newWeatherCard)
+}
+function newWeatherNY(){
+    $.ajax({
+        url: "https://api.darksky.net/forecast/9b70b905a7064b660f99a10adfa4f74c/40.7128,-74.0060,2018-"+ mm +"-" + dd + "T12:00:00",
+        success: function(result){  
+           console.log(result)
+           weatherInfo = result;
+           $("#weatherBlock").html(result);
+            addWeatherCard();
+        }
+    });
+}
+var icons = new Skycons({"color": "black"});
+
+icons.set("clear-day", Skycons.CLEAR_DAY);
+icons.set("clear-night", Skycons.CLEAR_NIGHT);
+icons.set("partly-cloudy-day", Skycons.PARTLY_CLOUDY_DAY);
+icons.set("partly-cloudy-night", Skycons.PARTLY_CLOUDY_NIGHT);
+icons.set("cloudy", Skycons.CLOUDY);
+icons.set("rain", Skycons.RAIN);
+icons.set("sleet", Skycons.SLEET);
+icons.set("snow", Skycons.SNOW);
+icons.set("wind", Skycons.WIND);
+icons.set("fog", Skycons.FOG);
+
+icons.play();
+
+$(document).ready(function(){
+    $('.sidenav').sidenav();
+  });

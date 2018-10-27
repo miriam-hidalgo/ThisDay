@@ -25,3 +25,15 @@ button{
       width:100%;
       color:#423093;
   }
+  body {
+	background: black;
+}
+
+figure {
+	margin: 5em auto;
+	width: 350px;
+	height: 150px;
+}
+.nytBlock{
+    border-color: red;
+}
