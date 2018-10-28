@@ -30,8 +30,11 @@ a{
 .btn{
     background-color:#423093;
 }
-body {
-    background: black;
+body{
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    widows: 100%;
 }
 
 figure {

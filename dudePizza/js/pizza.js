@@ -7,7 +7,10 @@ var numbersInfo;
 var mm;
 var dd;
 var yyyy;
-$('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd', 
+    maxDate: new Date(),
+});
 
 $("#submit").on("click",function(){
 
@@ -29,7 +32,7 @@ $("#submit").on("click",function(){
             //change background color
             console.log(result)
             $("body").css("background-image","url("+result.url+")");
-            $("body").css("background-size","cover")
+            // $("body").css("background-repeat","no-repeat");
 
             picInfo = result.explanation;
             picTitle = result.title;
@@ -110,6 +113,7 @@ function addNumbersCard(){
     console.log("making card now")
     var newNumberCard = $("<div class='card hoverable'></div>");
     var newNumberCardContent= $("<div class='card-content'></div>");
+    newNumberCardContent.append("<span class='card-title'>Trivia</span>")
     // newCardContent.append("<span class='card-title'>"+picTitle+"</span>")
     newNumberCardContent.append("<p id='trivia'>"+numbersInfo+"</p>")
     newNumberCardContent.append("<a class='waves-effect waves-light btn'>NEW TRIVIA</a>")
@@ -121,6 +125,7 @@ $(".numberBlock").on("click", "a", function(){
     console.log("y=h");
     newNumber();
 })
+
 function newNumber(){
     $.ajax({
         url: "http://numbersapi.com/" + mm + "/" + dd + "/date",
