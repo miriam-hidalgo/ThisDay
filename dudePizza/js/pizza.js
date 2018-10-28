@@ -10,6 +10,8 @@ var yyyy;
 $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
 
 $("#submit").on("click",function(){
+    // $(".apodCard").empty()
+    // $(".numberBlock").empty()
 
     //get rid of inputs
     $(".datepicker").toggle();
@@ -90,7 +92,7 @@ function changeBackground(datePicked){
         //change background color
         console.log(result.url)
         $("body").css("background-image","url("+result.url+")");
-        $("body").css("background-size","cover")
+        $("body").css("background-size","cover");
         }
     });
 }
@@ -117,6 +119,7 @@ function addNumbersCard(){
     newNumberCard.append(newNumberCardContent);
     $(".numberBlock").append(newNumberCard)
 }
+
 $(".numberBlock").on("click", "a", function(){
     console.log("y=h");
     newNumber();
