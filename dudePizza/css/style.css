@@ -19,6 +19,9 @@ button{
 .datepicker-table td.is-selected{
     background-color:#423093;
 }
+.sidenav-trigger{
+    color:white;
+}
 
 a{
     margin-top:10px;
@@ -27,11 +30,17 @@ a{
     font-weight: bold;
 }
 
+#pickDay{
+    height:100%;
+}
+
 .btn{
     background-color:#423093;
 }
-body {
-    background: black;
+body{
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
 }
 
 figure {
@@ -52,3 +61,14 @@ p{
     text-align: justify;
     text-justify: auto;
 }
+
+.btn-floating i{
+    color:#423093;
+}
+.btn-floating{
+    display:none;
+}
+.card{
+    display:none;
+}
+
