@@ -58,8 +58,8 @@ figure {
 }
 
 p{
-    text-align: justify;
-    text-justify: auto;
+    /* text-align: justify; */
+    /* text-justify: auto; */
 }
 
 .btn-floating i{

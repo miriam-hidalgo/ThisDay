@@ -9,12 +9,34 @@ var dd;
 var yyyy;
 var collapsibleElem = document.querySelector('.collapsible');
 var collapsibleInstance = M.Collapsible.init(collapsibleElem);
+var savedDays=[];
+
+// as soon as page loads, create links out of local storage
+if(localStorage.length>0){
+    if(localStorage.getItem("firstSaved")!= null){
+    }
+}
+console.log("localllll "+localStorage.length);
 
 $('.sidenav').sidenav();
 $('.tooltipped').tooltip();
 
-// Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+$("#saveDay").on("click",function(){
+    console.log("saved date: "+ date);
+    savedDays.push(date);
+    localStorage.setItem("savedDays", JSON.stringify(savedDays));
+    $("#savedDays").append("<li><a class='waves-effect' value='"+date+"'>"+date+"</a></li>");
+    
+    
+    // if(savedDays.includes(date)===true){
+    //     console.log("that bitch in here dawg")
+    // }else{
+    //}
+})
 
+$("#savedDays").on("click","a",function(){
+    console.log(event.target.innerHTML)
+})
         
 $('.fixed-action-btn').floatingActionButton();
 var elems = document.querySelectorAll('.fixed-action-btn');
@@ -54,16 +76,14 @@ $('.datepicker').datepicker({
         $.ajax({
             url: url+"&date="+date,
             success: function(result){
-        
+                if(result.media_type == "video") {
+                    console.log("issa video dawg");
+                }
                 //change background color
-                console.log(result)
                 $("body").css("background-image","url("+result.url+")");
-                // $("body").css("background-repeat","no-repeat");
 
                 picInfo = result.explanation;
                 picTitle = result.title;
-                console.log("title = "+picTitle)
-                console.log("title = "+picInfo)
 
                 $(".apodInfo").html(picInfo);
                 $(".apodTitle").html(picTitle);
@@ -96,20 +116,13 @@ $('.datepicker').datepicker({
         }).done(function(result) {
             var articles = result.response.docs;
 
-            // for (let index = 0; index < 5; index++) {
-
-            //     // CHANGE STORIES
-
-
-            //     // var story = articles[index];
-    
-            //     // var storySection = $("<div class='section'></div>")
-            //     // storySection.append("<a href="+story.web_url+" target='_blank'><p>"+story.headline.main+"</p></a>");
-            //     // storySection.append("<p>"+story.snippet+"</p>");
-            //     // $(".nytContent").append(storySection);
-            //     // nytContent.append("<div class='divider'></div>");
-            
-            // }
+            for (let index = 0; index < 5; index++) {
+                //CHANGE STORIES
+                var story = articles[index];
+                $("#link"+index).attr("href",story.web_url)
+                $("#headline"+index).html(story.headline.main);
+                $("#snippet"+index).html(story.snippet);
+            }
             $(".nytCard").css("display","block");
         }).fail(function(err) {
             throw err;
@@ -117,80 +130,6 @@ $('.datepicker').datepicker({
     }
 });
 
-// $("#submit").on("click",function(){
-//     // $(".apodCard").empty()
-//     // $(".numberBlock").empty()
-
-//     //get rid of inputs
-//     $(".datepicker").toggle();
-//     $("#submit").toggle()
-
-//     date = $('.datepicker')[0].value;
-//     console.log("date picked = "+date);
-//     mm = (date.split("-")[1])
-//     dd = (date.split("-")[2])
-//     yyyy= (date.split("-")[0])
-  
-//     // changeBackground(date);
-//     $.ajax({
-//         url: url+"&date="+date,
-//         success: function(result){
-    
-//             //change background color
-//             console.log(result)
-//             $("body").css("background-image","url("+result.url+")");
-//             // $("body").css("background-repeat","no-repeat");
-
-//             picInfo = result.explanation;
-//             picTitle = result.title;
-//             console.log("title = "+picTitle)
-//             console.log("title = "+picInfo)
-
-//             addApodCard();  
-//         }
-//     });
-    
-//     //change numbers block
-//     $.ajax({
-//         url: "http://numbersapi.com/" + mm + "/" + dd + "/date",
-//         success: function(result){  
-//            console.log(result)
-//            numbersInfo = result;
-//            addNumbersCard();
-//         }
-//     });
-
-//     //change darkSky block
-//     $.ajax({
-//         url: "https://api.darksky.net/forecast/9b70b905a7064b660f99a10adfa4f74c/40.7128,-74.0060,2018-"+ mm +"-" + dd + "T12:00:00",
-//         success: function(result){  
-//            console.log(result.currently)
-//            weatherInfo = result;
-//            addWeatherCard();
-//            $("#weatherBlock").html(result.currently);
-//         }
-//     });
-
-//     NYTurl = NYTurl + '?' + $.param({
-//     'api-key': "49af0056ae9e46d5a207000ad5232d9d",
-//     'begin_date': yyyy+mm+dd,
-//     // "end_date": yyyy+mm+dd
-//     });
-//     $.ajax({
-//         url: NYTurl,
-//         method: 'GET',
-//     }).done(function(result) {
-//         console.log("NYT result is "+result);
-//         console.log(result);
-//         var articles = result.response.docs;
-//         console.log(articles)
-//         addnyt(articles);
-
-//     }).fail(function(err) {
-//         throw err;
-//     });
-
-// })
 
 function changeBackground(datePicked){
     $.ajax({
@@ -275,8 +214,8 @@ function addnyt(){
         var nytContent = $("<div class='card-content nytContent'></div>");
         for (let index = 0; index < 5; index++) {
             var storySection = $("<div class='section'></div>")
-            storySection.append("<a href='' target='_blank'><p id=''></p></a>");
-            storySection.append("<p class='snippet'></p>");
+            storySection.append("<a id='link"+index+"' href='' target='_blank'><p id='headline"+index+"'></p></a>");
+            storySection.append("<p id='snippet"+index+"'></p>");
             nytContent.append(storySection);
         }
 
