@@ -33,9 +33,12 @@
             <div class="col s1"></div>
             <div class="col s10">
                 
-              <a class="btn-floating waves-effect waves-light white" id="newDateButton"><i class="material-icons">date_range</i></a>
-              <a data-target="slide-out" class="sidenav-trigger btn-floating btn-small waves-effect waves-light white"><i class="material-icons">menu</i></a>
-              <a class="btn-floating waves-effect waves-light white  btn-small"><i class="material-icons">favorite</i></a>
+              <a class="btn-floating waves-effect waves-light white btn tooltipped" data-position="bottom" data-tooltip="pick a new date" id="newDateButton"><i class="material-icons">date_range</i></a>
+
+              <a data-target="slide-out" class="sidenav-trigger btn-floating btn-small waves-effect waves-light white tooltipped" data-position="left" data-tooltip="saved dates"><i class="material-icons">menu</i></a>
+
+              <a class="btn-floating waves-effect waves-light white  btn-small tooltipped" data-position="right" data-tooltip="saved days"><i class="material-icons">favorite</i></a>
+
               <a id="pickDay" type="button" class="datepicker btn btn-large hoverable white-text">pick a day</a>
               <!-- <button id="submit" class="btn btn-large hoverable circle right white accent-2 black-text lighten-2 waves-effect waves-dark"><i class="material-icons left">sentiment_very_satisfied</i>WHAT HAPPENED THIS DAY</button> -->
             </div>

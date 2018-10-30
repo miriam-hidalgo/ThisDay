@@ -31,12 +31,26 @@ a{
 }
 
 #pickDay{
-    height:100%;
+    margin-top:20%;
+    height:50%;
+    padding:10%;
+    line-height:1; 
+    font-size:350%;
+    width:100%;
+}
+
+#pickDay:hover{
+    background-color: #48369b;
 }
 
 .btn{
-    background-color:#423093;
+    background-color:#33266e;
 }
+
+.btn:hover{
+    background-color: #48369b 
+}
+
 body{
     background-repeat: no-repeat;
     background-position:center;
