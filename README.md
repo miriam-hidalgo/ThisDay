@@ -24,3 +24,6 @@ The website has the user select a date from the pop up Datepicker that pops up f
 
 **Ulyses Colon** 
 ![Ulyses](https://avatars2.githubusercontent.com/u/42300114?s=400&u=76146ef4c4b28f7a4d49bea03a6cc08d6d3169b3&v=4)
+
+**Sandra Nunez**
+![Placeholder](https://image.shutterstock.com/display_pic_with_logo/483673/187715852/stock-vector-cartoon-funny-robot-187715852.jpg)
