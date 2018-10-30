@@ -15,3 +15,7 @@ The website has the user select a date from the pop up Datepicker that pops up f
 ![Numbers API](https://www.programmableweb.com/wp-content/numbersapiscreen.png)
 ![NYT API](https://developer.nytimes.com/img/NYTDevLogo.svg)
 
+## Team Members:
+Anthony Cartagena ![Ant](https://pbs.twimg.com/profile_images/773176104815366144/Bb0iUK6F_400x400.jpg)
+Miriam Hidalgo ![Miriam](https://avatars1.githubusercontent.com/u/22244945?s=460&v=4)
+Ulyses Colon ![Ulyses](https://www.facebook.com/photo.php?fbid=105313926254265&set=pb.100003269739548.-2207520000.1540859520.&type=3&theater)
