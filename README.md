@@ -16,6 +16,9 @@ The website has the user select a date from the pop up Datepicker that pops up f
 ![NYT API](https://developer.nytimes.com/img/NYTDevLogo.svg)
 
 ## Team Members:
-Anthony Cartagena ![Ant](https://pbs.twimg.com/profile_images/773176104815366144/Bb0iUK6F_400x400.jpg)
-Miriam Hidalgo ![Miriam](https://avatars1.githubusercontent.com/u/22244945?s=460&v=4)
-Ulyses Colon ![Ulyses](https://media.licdn.com/dms/image/C5603AQExH_4xySAiFQ/profile-displayphoto-shrink_200_200/0?e=1542240000&v=beta&t=Ayw3rB8SdKDq1Iyizu2SHmb_0Unv6UjUEDioej_AdKQ)
+**Anthony Cartagena** 
+![Ant](https://pbs.twimg.com/profile_images/773176104815366144/Bb0iUK6F_400x400.jpg)
+**Miriam Hidalgo** 
+![Miriam](https://avatars1.githubusercontent.com/u/22244945?s=460&v=4)
+**Ulyses Colon** 
+![Ulyses](https://avatars2.githubusercontent.com/u/42300114?s=400&u=76146ef4c4b28f7a4d49bea03a6cc08d6d3169b3&v=4)
