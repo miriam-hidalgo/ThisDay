@@ -34,4 +34,4 @@ After a date has been picked the user can interact with a number of elements on 
 ![Ulyses](https://avatars2.githubusercontent.com/u/42300114?s=400&u=76146ef4c4b28f7a4d49bea03a6cc08d6d3169b3&v=4)
 
 - **Sandra Nunez**
-![Placeholder](https://image.shutterstock.com/display_pic_with_logo/483673/187715852/stock-vector-cartoon-funny-robot-187715852.jpg)
+![Placeholder](https://cdn.nanalyze.com/uploads/2016/09/UBTECH-Cool-Robot-Alpha-1S.jpg)
