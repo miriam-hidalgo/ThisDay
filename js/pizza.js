@@ -1,5 +1,6 @@
-var url = "https://api.nasa.gov/planetary/apod?api_key=54lBa2rMDnkIC43dEmrnkzykVy4aWrfLWxYDJfXO";
+var NASAurl = "https://api.nasa.gov/planetary/apod?api_key=54lBa2rMDnkIC43dEmrnkzykVy4aWrfLWxYDJfXO";
 var NYTurl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+var nytArticles;
 var date;
 var picInfo;
 var picTitle;
@@ -9,41 +10,59 @@ var dd;
 var yyyy;
 var collapsibleElem = document.querySelector('.collapsible');
 var collapsibleInstance = M.Collapsible.init(collapsibleElem);
-var savedDays=[];
+var savedDays;
 
 // as soon as page loads, create links out of local storage
-if(localStorage.length>0){
-    if(localStorage.getItem("firstSaved")!= null){
-    }
+if(localStorage.getItem("savedDays") === null){
+    savedDays=[];
+    console.log("NO SAVED DAYS");
+}else{
+  console.log("SAVED DAYS FOUND");
+  savedDays=JSON.parse(localStorage.getItem("savedDays"));
+  console.log("saved days = "+ savedDays);
+  makeSavedLinks();
+  $("#menu").css("display","inline-block");
 }
-console.log("localllll "+localStorage.length);
 
 $('.sidenav').sidenav();
 $('.tooltipped').tooltip();
 
 $("#saveDay").on("click",function(){
-    console.log("saved date: "+ date);
-    savedDays.push(date);
-    localStorage.setItem("savedDays", JSON.stringify(savedDays));
-    $("#savedDays").append("<li><a class='waves-effect' value='"+date+"'>"+date+"</a></li>");
+
+    if($("#saveIcon").html()==="favorite"){
+        $("#saveIcon").html("favorite_border")
+    }else{
+        $("#saveIcon").html("favorite")
+    }
     
-    
-    // if(savedDays.includes(date)===true){
-    //     console.log("that bitch in here dawg")
-    // }else{
-    //}
+    if(savedDays.includes(date)===true){
+        savedDays.splice(savedDays.indexOf(date), 1);
+        localStorage.setItem("savedDays", JSON.stringify(savedDays));
+        $('#'+date).remove();   
+    }else{
+        savedDays.push(date);
+        localStorage.setItem("savedDays", JSON.stringify(savedDays));
+        $("#savedDays").append("<li id='"+date+"'><a class='waves-effect'>"+date+"</a></li>");   
+    }
 })
 
-$("#savedDays").on("click","a",function(){
-    console.log(event.target.innerHTML)
+$(".savedDayButton").on("click",function(){
+    
+    date=event.target.innerText;
+    console.log("saved date to show "+date)
+    mm = (date.split("-")[1]);
+    dd = (date.split("-")[2]);
+    yyyy= (date.split("-")[0]);
+    
+    if ($("#pickDay").css("display")!= "none"){
+        $('#pickDay').css("display","none");
+        $(".btn-floating").css("display","inline-block");
+        addApodCard();
+        addNumbersCard();
+        addnyt();
+    }
+    changePage();
 })
-        
-$('.fixed-action-btn').floatingActionButton();
-var elems = document.querySelectorAll('.fixed-action-btn');
-var instances = M.FloatingActionButton.init(elems, {
-  direction: 'right',  
-  hoverEnabled: false
-});
 
 $('#pickDay').on("click", function(){
     addApodCard();
@@ -59,87 +78,33 @@ $('.datepicker').datepicker({
     format: 'yyyy-mm-dd', 
     maxDate: new Date(),
     onClose: function(datePicked){
-   
+        
         $('#pickDay').css("display","none");
         $(".btn-floating").css("display","inline-block");
         
-        // $(".datepicker").toggle();
-        // $("#submit").toggle()
-        
         date = $('.datepicker')[0].value;
         console.log("date picked = "+date);
-        mm = (date.split("-")[1])
-        dd = (date.split("-")[2])
-        yyyy= (date.split("-")[0])
-    
-        // changeBackground(date);
-        $.ajax({
-            url: url+"&date="+date,
-            success: function(result){
-                if(result.media_type == "video") {
-                    console.log("issa video dawg");
-                }
-                //change background color
-                $("body").css("background-image","url("+result.url+")");
-
-                picInfo = result.explanation;
-                picTitle = result.title;
-
-                $(".apodInfo").html(picInfo);
-                $(".apodTitle").html(picTitle);
-                $(".apodCard").css("display","inherit");
-            }
-        });
+        mm = (date.split("-")[1]);
+        dd = (date.split("-")[2]);
+        yyyy= (date.split("-")[0]);
+        console.log("month = "+mm);
+        console.log("day = "+dd);
+        console.log("year = "+yyyy);
         
-        //change numbers block
-       newNumber();
-
-        //change darkSky block
-        $.ajax({
-            url: "https://api.darksky.net/forecast/9b70b905a7064b660f99a10adfa4f74c/40.7128,-74.0060,2018-"+ mm +"-" + dd + "T12:00:00",
-            success: function(result){  
-            console.log(result.currently)
-            weatherInfo = result;
-            addWeatherCard();
-            $("#weatherBlock").html(result.currently);
-            }
-        });
-
-        NYTurl = NYTurl + '?' + $.param({
-        'api-key': "49af0056ae9e46d5a207000ad5232d9d",
-        'begin_date': yyyy+mm+dd,
-        // "end_date": yyyy+mm+dd
-        });
-        $.ajax({
-            url: NYTurl,
-            method: 'GET',
-        }).done(function(result) {
-            var articles = result.response.docs;
-
-            for (let index = 0; index < 5; index++) {
-                //CHANGE STORIES
-                var story = articles[index];
-                $("#link"+index).attr("href",story.web_url)
-                $("#headline"+index).html(story.headline.main);
-                $("#snippet"+index).html(story.snippet);
-            }
-            $(".nytCard").css("display","block");
-        }).fail(function(err) {
-            throw err;
-        });
+        changePage();
     }
 });
 
 
 function changeBackground(datePicked){
     $.ajax({
-    url: url+"&date="+datePicked,
-    success: function(result){
-
-        //change background color
-        console.log(result.url)
-        $("body").css("background-image","url("+result.url+")");
-        $("body").css("background-size","cover");
+        url: url+"&date="+datePicked,
+        success: function(result){
+            
+            //change background color
+            console.log(result.url)
+            $("body").css("background-image","url("+result.url+")");
+            $("body").css("background-size","cover");
         }
     });
 }
@@ -150,7 +115,7 @@ function addApodCard(){
     var newCardContent= $("<div class='card-content'></div>");
     newCardContent.append("<span class='card-title apodTitle'></span>")
     newCardContent.append("<p class='apodInfo'></p>")
-
+    
     newCard.append(newCardContent);
     $(".apodCard").append(newCard)
 }
@@ -161,7 +126,7 @@ function addNumbersCard(){
     newNumberCardContent.append("<span class='card-title'>Trivia</span>")
     newNumberCardContent.append("<p id='trivia'></p>")
     newNumberCardContent.append("<a class='waves-effect waves-light btn'>NEW TRIVIA</a>")
-
+    
     newNumberCard.append(newNumberCardContent);
     $(".numberBlock").append(newNumberCard)
 }
@@ -183,8 +148,6 @@ function newNumber(){
     $(".triviaCard").css("display","block");
 }
 
-
-// skycons to append to div. need to connect .currently.icon
 function addWeatherCard(){
     console.log("making weather card now")
     var newWeatherCard = $("<div class='card hoverable'></div>");
@@ -192,36 +155,94 @@ function addWeatherCard(){
     // newCardContent.append("<span class='card-title'>"+picTitle+"</span>")
     newWeatherCardContent.append("<p id='weather'>"+ weatherInfo +"</p>")
     newWeatherCardContent.append("<a class='waves-effect waves-light btn'>NEW TRIVIA</a>")
-
+    
     newWeatherCard.append(newWeatherCardContent);
     $(".numberBlock").append(newWeatherCard)
 }
-function newWeatherNY(){
-    $.ajax({
-        url: "https://api.darksky.net/forecast/9b70b905a7064b660f99a10adfa4f74c/40.7128,-74.0060,2018-"+ mm +"-" + dd + "T12:00:00",
-        success: function(result){  
-           console.log(result)
-           weatherInfo = result;
-           $("#weatherBlock").html(result);
-            addWeatherCard();
-        }
-    });
-}
 
 function addnyt(){
-
+    
     var nytCard = $("<div class='nytCard card hoverable'></div>");
-        var nytContent = $("<div class='card-content nytContent'></div>");
-        for (let index = 0; index < 5; index++) {
-            var storySection = $("<div class='section'></div>")
-            storySection.append("<a id='link"+index+"' href='' target='_blank'><p id='headline"+index+"'></p></a>");
-            storySection.append("<p id='snippet"+index+"'></p>");
-            nytContent.append(storySection);
-        }
-
+    var nytContent = $("<div class='card-content nytContent'></div>");
+    for (let index = 0; index < 5; index++) {
+        var storySection = $("<div class='section'></div>")
+        storySection.append("<a id='link"+index+"' href='' target='_blank'><p id='headline"+index+"'></p></a>");
+        storySection.append("<p id='snippet"+index+"'></p>");
+        nytContent.append(storySection);
+    }
+    
     nytCard.append(nytContent);
     $(".nytBlock").append(nytCard);
+    
+}
+function makeSavedLinks(){
+    for(var a=0; a<savedDays.length;a++){
+        $("#savedDays").append("<li id='"+savedDays[a]+"' class='savedItem'><a class='waves-effect savedDayButton'>"+savedDays[a]+"<i class='material-icons clearSaved'>clear</i></a></li>");
+    }
+}
 
+function checkIcon(){
+    if(savedDays.includes(date)===true && $("#saveIcon").html() === "favorite_border"){
+        console.log("this needs an icon change");
+        $("#saveIcon").html("favorite");
+    }else if(savedDays.includes(date)===false && $("#saveIcon").html() === "favorite"){
+        console.log("icon's good")
+        $("#saveIcon").html("favorite_border");
+    }
+}
+function changePage(){
+
+    checkIcon();
+     // changeBackground(date);
+     $.ajax({
+        url: NASAurl+"&date="+date,
+        success: function(result){
+            if(result.media_type == "video") {
+                console.log("issa video dawg");
+            }
+            //change background color
+            $("body").css("background-image","url("+result.url+")");
+
+            picInfo = result.explanation;
+            picTitle = result.title;
+
+            $(".apodInfo").html(picInfo);
+            $(".apodTitle").html(picTitle);
+            $(".apodCard").css("display","inherit");
+        }
+    });
+    
+    //change numbers block
+   newNumber();
+
+    console.log(NYTurl + '?' + $.param({
+        'api-key': "49af0056ae9e46d5a207000ad5232d9d",
+        'begin_date': yyyy+mm+dd,
+        // "end_date": yyyy+mm+dd
+    }))
+    var newNyt = NYTurl + '?' + $.param({
+    'api-key': "49af0056ae9e46d5a207000ad5232d9d",
+    'begin_date': yyyy+mm+dd,
+    // "end_date": yyyy+mm+dd
+    });
+    $.ajax({
+        url: newNyt,
+        method: 'GET',
+    }).done(function(result) {
+        nytArticles = result.response.docs;
+        console.log(result);
+
+        for (let index = 0; index < 5; index++) {
+            //CHANGE STORIES
+            var story = nytArticles[index];
+            $("#link"+index).attr("href",story.web_url)
+            $("#headline"+index).html(story.headline.main);
+            $("#snippet"+index).html(story.snippet);
+        }
+        $(".nytCard").css("display","block");
+    }).fail(function(err) {
+        throw err;
+    });
 }
 
 var icons = new Skycons({"color": "black"});
