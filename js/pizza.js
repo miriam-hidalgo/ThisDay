@@ -46,6 +46,12 @@ $("#saveDay").on("click",function(){
     }
 })
 
+    $("#clearAllButton").click(function(){
+    $("#savedDays").empty()
+    savedDays=[]
+    localStorage.setItem("savedDays", JSON.stringify(savedDays));
+    })
+
 $(".savedDayButton").on("click",function(){
     
     date=event.target.innerText;

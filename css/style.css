@@ -23,6 +23,12 @@ button{
     color:white;
 }
 
+#clearAllButton{
+    background-color:#910303;
+    width:60%;
+    margin-left:25%;
+}
+
 a{
     margin-top:10px;
     width:100%;
