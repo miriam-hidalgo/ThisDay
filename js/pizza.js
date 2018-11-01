@@ -149,7 +149,7 @@ $(".numberBlock").on("click", "a", function() {
 //call ajax and change html for trivia card
 function newNumber() {
   $.ajax({
-    url: "http://numbersapi.com/" + mm + "/" + dd + "/date",
+    url: "https://numbersapi.com/" + mm + "/" + dd + "/date",
     success: function(result) {
       console.log(result);
       numbersInfo = result;
