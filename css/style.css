@@ -89,3 +89,6 @@ p{
 .clearSaved{
     display:none;
 }
+.datepicker-cancel, .datepicker-done{
+    display:none;
+}
