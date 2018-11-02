@@ -92,3 +92,7 @@ p{
 .datepicker-cancel, .datepicker-done{
     display:none;
 }
+
+.triviaCard{
+    height:200px;
+}
