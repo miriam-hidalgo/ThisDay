@@ -54,13 +54,13 @@ $("#saveDay").on("click", function() {
     savedDays.push(date);
     localStorage.setItem("savedDays", JSON.stringify(savedDays));
     $("#savedDays").append(
-      "<li id='" + date + "'><a class='waves-effect'>" + date + "</a></li>"
+      "<li id='" + date + "' class='savedItem'><a class='waves-effect savedDayButton'>" + date + "</a></li>"
     );
   }
 });
 
 //when a sidenav link is pressed, set date to the value of the html, break up the date into mm/dd/yyyy, and run changePage
-$(".savedDayButton").on("click", function() {
+$("#savedDays").on("click", ".savedDayButton",function() {
   date = event.target.innerText;
   console.log("saved date to show " + date);
   mm = date.split("-")[1];
@@ -134,7 +134,7 @@ function addNumbersCard() {
   newNumberCardContent.append(
     "<a class='waves-effect waves-light btn'>NEW TRIVIA</a>"
   );
-
+  
   newNumberCard.append(newNumberCardContent);
   $(".numberBlock").append(newNumberCard);
 }
@@ -148,13 +148,18 @@ $(".numberBlock").on("click", "a", function() {
 
 //call ajax and change html for trivia card
 function newNumber() {
-  $.ajax({
-    url: "https://numbersapi.com/" + mm + "/" + dd + "/date",
-    success: function(result) {
-      console.log(result);
-      numbersInfo = result;
-      $("#trivia").html(result);
-    }
+  // $.ajax({
+  //   url: "https://numbersapi.com/" + mm + "/" + dd + "/date",
+  //   success: function(result) {
+  //     console.log(result);
+  //     numbersInfo = result;
+  //     $("#trivia").html(result);
+  //   }
+  // });
+
+  $.get("http://numbersapi.com/" + mm + "/" + dd + "/date", function(data) {
+    console.log("http://numbersapi.com/" + mm + "/" + dd + "/date?notfound=floor&fragment")
+    $('#trivia').text(data);
   });
   $(".triviaCard").css("display", "block");
 }

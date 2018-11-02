@@ -30,10 +30,12 @@
     <div class="row">
       <div class="col s1"></div>
       <div class="col s10 buttonCol">
-        <a id="menu" data-target="slide-out" class="sidenav-trigger btn-floating btn-small waves-effect waves-light white"><i
-            class="material-icons">menu</i></a>
+        <!-- <a id="menu" data-target="slide-out" class="sidenav-trigger btn-floating btn-small waves-effect waves-light white"><i class="material-icons">menu</i></a>
         <a class="btn-floating waves-effect waves-light white btn-small" id="newDateButton"><i class="material-icons">date_range</i></a>
-        <a id="saveDay" class="btn-floating waves-effect waves-light white btn-small"><i id="saveIcon" class="material-icons">favorite_border</i></a>
+        <a id="saveDay" class="btn-floating waves-effect waves-light white btn-small"><i id="saveIcon" class="material-icons">favorite_border</i></a> -->
+        <a id="menu" data-target="slide-out" data-position="left" data-tooltip="Saved Days" class="sidenav-trigger btn-floating btn-small waves-effect waves-light white btn tooltipped"><i class="material-icons">menu</i></a>
+        <a class="btn-floating waves-effect waves-light white btn-small btn tooltipped" data-position="bottom" data-tooltip="Pick New Date" id="newDateButton"><i class="material-icons">date_range</i></a>
+        <a id="saveDay" class="btn-floating waves-effect waves-light white btn-small btn tooltipped" data-position="right" data-tooltip="Save Day"><i class="material-icons">favorite</i></a>
         <a id="pickDay" type="button" class="datepicker btn btn-large hoverable white-text">pick a day</a>
       </div>
       <div class="col s1"></div>
