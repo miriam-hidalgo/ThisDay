@@ -134,6 +134,7 @@ function addApodCard() {
   var newCardContent = $("<div class='card-content'></div>");
   newCardContent.append("<span class='card-title apodTitle flow-text'></span>");
   newCardContent.append("<p class='apodInfo flow-text'></p>");
+  newCardContent.append("<div class='preloader-wrapper big active center-align'><div class='spinner-layer spinner-blue-only'><div class='circle-clipper left'><div class='circle'></div></div><div class='gap-patch'><div class='circle'></div></div><div class='circle-clipper right'><div class='circle'></div></div></div></div>")
   // newCardContent.append("<a class='waves-effect waves-light btn'>view Nasa's Image of the day</a>");
 
   newCard.append(newCardContent);
@@ -157,8 +158,8 @@ function addViewToggle(){
   var newViewCard = $("<div class='viewCard card hoverable'></div>");
   var newViewCardContent = $("<div class='card-content nasaContent'></div>");
   // newViewCardContent.append("<a class='waves-effect waves-light btn'>view Nasa's Image of the day</a>");
-  newViewCardContent.append("<img class='materialboxed' src=''>")
-
+  newViewCardContent.append("<div class='preloader-wrapper active center-align'><div class='spinner-layer spinner-blue-only'><div class='circle-clipper left'><div class='circle'></div></div><div class='gap-patch'><div class='circle'></div></div><div class='circle-clipper right'><div class='circle'></div></div></div></div>");
+  
   newViewCard.append(newViewCardContent);
   $(".numberBlock").append(newViewCard);
 }
@@ -313,7 +314,15 @@ function readDate(){
 function changePage() {
   checkIcon();
   $("#dateDisplay").text(readDate());
+  $(".preloader-wrapper").css("display","block");
+  $(".added").css("display","none");
+  $(".apodInfo").css("display","none");
+  $(".apodTitle").css("display","none");
   
+  //display viewImage card and .apodCard to show loading sign. give feedback to user
+  $(".viewCard").css("display","block");
+  $(".apodCard").css("display", "block");
+ 
   //run NASA ajax to change background
   $.ajax({
     url: NASAurl + "&date=" + date,
@@ -322,14 +331,14 @@ function changePage() {
         console.log("issa video dawg");
         console.log(result.url);
         $("#dateDisplay").css("color","black");
-        $(".nasaContent").empty();
-        $(".nasaContent").append("<div class='video-container'><iframe id='videoPlace' src='"+result.url+"'frameborder='0' allowfullscreen></iframe></div>")
+        $(".added").remove();
+        $(".nasaContent").append("<div class='added video-container'><iframe id='videoPlace' src='"+result.url+"'frameborder='0' allowfullscreen></iframe></div>");
         $(".video-container").css("display","block");
       }else{
         //change background color
         $("#dateDisplay").css("color","white");
-        $(".nasaContent").empty();
-        $(".nasaContent").append("<img class='responsive-img materialboxed' src='"+result.url+"'>");
+        $(".added").remove();
+        $(".nasaContent").append("<img class='added responsive-img materialboxed' src='"+result.url+"'>");
         $('.materialboxed').materialbox();
       }
       
@@ -339,15 +348,16 @@ function changePage() {
 
       $(".apodInfo").html(picInfo);
       $(".apodTitle").html(picTitle);
-      $(".apodCard").css("display", "block");
-    }
+      $(".apodInfo").css("display","block");
+      $(".apodTitle").css("display","block");
+      $(".added").css("display","block");
+      $(".preloader-wrapper").css("display","none");
+    } 
   });
 
   //run newNumber to change trivia
   // newNumber();
 
-  //display viewImage card 
-  $(".viewCard").css("display","block");
 
   //adds 1 to day. ajax call to NYT needs to send date and date+1. this means headaches for last day of the month.
   var dayPlus = parseInt(dd) + 1;
