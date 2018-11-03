@@ -312,6 +312,7 @@ function readDate(){
 
 //the meat and potatos of the page. runs ajax calls to each API to change HTML 
 function changePage() {
+  $(".sidenav").sidenav("close");
   checkIcon();
   $("#dateDisplay").text(readDate());
   $(".preloader-wrapper").css("display","block");
