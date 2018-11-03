@@ -47,6 +47,7 @@ a{
     background-color:#33266e;
 }
 
+
 .btn:hover{
     background-color: #48369b 
 }
@@ -58,7 +59,7 @@ body{
 }
 
 figure {
-	margin: 5em auto;
+    margin: 5em auto;
 	width: 350px;
 	height: 150px;
 }
@@ -76,23 +77,22 @@ p{
     /* text-justify: auto; */
 }
 
+.nasaContent > a {
+    margin-top: 0%;
+}
+
 .btn-floating i{
     color:#423093;
 }
-.btn-floating{
-    display:none;
-}
-.card{
+
+.card, .clearSaved, .btn-floating{
     display:none;
 }
 
-.clearSaved{
-    display:none;
-}
 .datepicker-cancel, .datepicker-done{
     display:none;
 }
 
-.triviaCard{
-    height:200px;
+.material-tooltip{
+    background-color: #423093;
 }

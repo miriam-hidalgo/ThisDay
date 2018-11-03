@@ -21,48 +21,49 @@
     <li><a class="subheader">Saved Days</a></li>
     <div class="section" id="savedDays">
     </div>
+    <li><a id="clearAllButton" class="waves-effect waves-light btn">Clear All</a></li>
   </ul>
 
 
 
 
   <div class="container">
+    <!-- menu buttons-->
     <div class="row">
       <div class="col s1"></div>
       <div class="col s10 buttonCol">
-        <!-- <a id="menu" data-target="slide-out" class="sidenav-trigger btn-floating btn-small waves-effect waves-light white"><i class="material-icons">menu</i></a>
-        <a class="btn-floating waves-effect waves-light white btn-small" id="newDateButton"><i class="material-icons">date_range</i></a>
-        <a id="saveDay" class="btn-floating waves-effect waves-light white btn-small"><i id="saveIcon" class="material-icons">favorite_border</i></a> -->
-        <a id="menu" data-target="slide-out" data-position="left" data-tooltip="Saved Days" class="sidenav-trigger btn-floating btn-small waves-effect waves-light white btn tooltipped"><i class="material-icons">menu</i></a>
+        <a id="menu" data-target="slide-out" data-position="bottom" data-tooltip="Saved Days" class="sidenav-trigger btn-floating btn-small waves-effect waves-light white btn tooltipped"><i class="material-icons">menu</i></a>
         <a class="btn-floating waves-effect waves-light white btn-small btn tooltipped" data-position="bottom" data-tooltip="Pick New Date" id="newDateButton"><i class="material-icons">date_range</i></a>
-        <a id="saveDay" class="btn-floating waves-effect waves-light white btn-small btn tooltipped" data-position="right" data-tooltip="Save Day"><i class="material-icons">favorite</i></a>
+        <a id="saveDay" class="btn-floating waves-effect waves-light white btn-small tooltipped" data-position="bottom" data-tooltip="Save Day"><i id="saveIcon" class="material-icons">favorite_border</i></a> 
         <a id="pickDay" type="button" class="datepicker btn btn-large hoverable white-text">pick a day</a>
+        <h4 class="left-align" id="dateDisplay"></h4>
       </div>
       <div class="col s1"></div>
     </div>
 
+    <!-- main page content -->
     <div class="row">
       <div class="col s1"></div>
       <div class="col s10">
 
-
+        <!-- row for the Astronony Picture of the day -->
         <div class="row">
           <div class="col s12 apodCard">
           </div>
         </div>
 
-
+        <!-- Row for NYT Articles and Trivia/View Picture cards that sit side-by-side -->
         <div class="row">
-          <div class="col s6 nytBlock"></div>
-          <div class="col s6">
-            <div class="row">
-              <div class="col s12 numberBlock"></div>
-            </div>
-            <div class="row">
-              <div class="col s12 weatherBlock">
+          <div class="col s12 m6">
+                <div class="row">
+                  <div class="col s12 numberBlock"></div>
+                </div>
+                <div class="row">
+                  <div class="col s12 weatherBlock">
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+          <div class="col s12 m6 nytBlock"></div>
         </div>
 
         <div class="row">
