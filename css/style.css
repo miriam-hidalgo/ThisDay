@@ -85,7 +85,7 @@ p{
     color:#423093;
 }
 
-.card, .clearSaved, .btn-floating{
+.card, .clearSaved, .btn-floating, .preloader-wrapper{
     display:none;
 }
 
@@ -95,4 +95,8 @@ p{
 
 .material-tooltip{
     background-color: #423093;
+}
+
+.preloader-wrapper{
+    margin:auto
 }
